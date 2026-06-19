@@ -1,0 +1,27 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  security:
+    user:
+      name: config-admin
+      password: config@123
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/shivamnagapure/banking-config-repo
+          default-label: main
+          clone-on-start: true
+          timeout: 10
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
