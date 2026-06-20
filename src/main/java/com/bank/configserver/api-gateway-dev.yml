@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active:
+      - dev
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http:/localhost:8081/auth-service
+
+  data:
+    redis:
+      host: localhost:6371
+
+  cloud:
+    gateway:
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replinishRate: 5
+            redis-rate-limiter.brustCapacity: 10
+      routes:
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - path=/api/account/**
+          filters:
+            - StripePrefix=1
