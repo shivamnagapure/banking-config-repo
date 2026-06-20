@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.bank</groupId>
-		<artifactId>banking-system</artifactId>
+		<artifactId>banking-system-parent</artifactId>
 		<version>1.0.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.bank</groupId>
